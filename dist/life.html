@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f1e7">
+  <meta name="description" content="Ganping Xue 的旅行地图与月度生活记录。">
+  <title>生活地图 — Ganping Xue</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="vendor/d3-array.min.js" defer></script>
+  <script src="vendor/d3-geo.min.js" defer></script>
+  <script src="content.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="index.html" aria-label="Ganping Xue 首页">GX<span>·</span></a>
+    <nav class="main-nav" aria-label="站点页面">
+      <a href="index.html"><span data-zh>首页</span><span data-en hidden>Home</span></a>
+      <a class="active" href="life.html" aria-current="page"><span data-zh>生活地图</span><span data-en hidden>Life atlas</span></a>
+      <a href="learning.html"><span data-zh>学习笔记</span><span data-en hidden>Learning notes</span></a>
+      <a href="interests.html"><span data-zh>兴趣收藏</span><span data-en hidden>Interests</span></a>
+      <a href="career.html"><span data-zh>求职与作品</span><span data-en hidden>Career & work</span></a>
+    </nav>
+    <button class="language-toggle" type="button" data-language-toggle aria-label="Switch language">EN</button>
+  </header>
+
+  <main class="page-shell inner-page">
+    <section class="page-intro reveal">
+      <p class="eyebrow"><span data-zh>01 / 生活地图</span><span data-en hidden>01 / LIFE ATLAS</span></p>
+      <h1 class="editorial-title"><span data-zh>把日子，<br><em>放回地图里。</em></span><span data-en hidden>Let the days<br><em>find their place.</em></span></h1>
+      <p class="page-deck"><span data-zh>从 2024 年开始，按月记下日常与旅行。城市是坐标，故事会慢慢补齐。</span><span data-en hidden>Since 2024, a monthly record of everyday life and travel. Cities are coordinates; stories will gather over time.</span></p>
+    </section>
+
+    <section class="globe-section reveal" aria-labelledby="globe-title">
+      <div class="section-heading compact-heading">
+        <div><p class="eyebrow"><span data-zh>旅行坐标</span><span data-en hidden>TRAVEL COORDINATES</span></p><h2 id="globe-title"><span data-zh>去过的城市</span><span data-en hidden>Cities I’ve visited</span></h2></div>
+        <p class="globe-hint"><span data-zh>拖动地球仪旋转 · 点击城市看记录</span><span data-en hidden>Drag to rotate · Select a city to find its story</span></p>
+      </div>
+      <div class="globe-layout">
+        <div class="globe-stage" data-globe-stage>
+          <canvas class="globe-canvas" data-globe aria-label="可拖动旋转的地球仪，标记去过的城市"></canvas>
+          <div class="globe-overlay"><span>30°N</span><span>ASIA / PACIFIC</span><span>120°E</span></div>
+          <span class="globe-orbit orbit-one" aria-hidden="true"></span>
+          <span class="globe-orbit orbit-two" aria-hidden="true"></span>
+        </div>
+        <div class="city-index">
+          <p class="eyebrow"><span data-zh>城市索引 · 16</span><span data-en hidden>CITY INDEX · 16</span></p>
+          <p class="city-index-note"><span data-zh>选择一个名字，跳到它在时间线里的记录。</span><span data-en hidden>Select a city to find it in the timeline.</span></p>
+          <div class="city-list" data-city-list>
+            <button type="button" class="city-chip" data-city-select="成都"><span data-zh>成都</span><span data-en hidden>Chengdu</span></button>
+            <button type="button" class="city-chip" data-city-select="芒市"><span data-zh>芒市</span><span data-en hidden>Mangshi</span></button>
+            <button type="button" class="city-chip" data-city-select="大理"><span data-zh>大理</span><span data-en hidden>Dali</span></button>
+            <button type="button" class="city-chip" data-city-select="北海"><span data-zh>北海</span><span data-en hidden>Beihai</span></button>
+            <button type="button" class="city-chip" data-city-select="重庆"><span data-zh>重庆</span><span data-en hidden>Chongqing</span></button>
+            <button type="button" class="city-chip" data-city-select="北京"><span data-zh>北京</span><span data-en hidden>Beijing</span></button>
+            <button type="button" class="city-chip" data-city-select="青岛"><span data-zh>青岛</span><span data-en hidden>Qingdao</span></button>
+            <button type="button" class="city-chip" data-city-select="西安"><span data-zh>西安</span><span data-en hidden>Xi’an</span></button>
+            <button type="button" class="city-chip" data-city-select="广州"><span data-zh>广州</span><span data-en hidden>Guangzhou</span></button>
+            <button type="button" class="city-chip" data-city-select="深圳"><span data-zh>深圳</span><span data-en hidden>Shenzhen</span></button>
+            <button type="button" class="city-chip" data-city-select="万宁"><span data-zh>万宁</span><span data-en hidden>Wanning</span></button>
+            <button type="button" class="city-chip" data-city-select="陵水"><span data-zh>陵水</span><span data-en hidden>Lingshui</span></button>
+            <button type="button" class="city-chip" data-city-select="三亚"><span data-zh>三亚</span><span data-en hidden>Sanya</span></button>
+            <button type="button" class="city-chip" data-city-select="自贡"><span data-zh>自贡</span><span data-en hidden>Zigong</span></button>
+            <button type="button" class="city-chip" data-city-select="内江"><span data-zh>内江</span><span data-en hidden>Neijiang</span></button>
+            <button type="button" class="city-chip" data-city-select="珠海"><span data-zh>珠海</span><span data-en hidden>Zhuhai</span></button>
+          </div>
+          <p class="selected-city-note" data-selected-city aria-live="polite"><span data-zh>中国 · 一些来过的地方</span><span data-en hidden>China · Places along the way</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="travel-archive timeline-section section-space" id="timeline" aria-labelledby="archive-title">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow"><span data-zh>从 2024 年开始 · 持续更新</span><span data-en hidden>FROM 2024 ONWARD · IN PROGRESS</span></p><h2 id="archive-title" class="editorial-title"><span data-zh>一月一页，<br>慢慢写下去。</span><span data-en hidden>One month at a time,<br>still in progress.</span></h2></div>
+        <p class="timeline-note"><span data-zh>按月份收好的旅行与日常，沿着时间慢慢往下读。</span><span data-en hidden>Travel and everyday moments, gathered by month. Follow the story down the page.</span></p>
+      </div>
+      <div class="month-story-experience" data-month-story-experience>
+        <aside class="story-sticky-note" data-story-sticky-note data-aria-zh="当前月份的故事便签" data-aria-en="Current monthly story note" aria-label="当前月份的故事便签" aria-live="polite" aria-atomic="true">
+          <span class="story-note-pin" aria-hidden="true"></span>
+          <svg class="story-note-firework" data-story-note-firework viewBox="0 0 80 80" aria-hidden="true">
+            <path class="story-note-firework-rays" d="M40 5v15 M40 60v15 M5 40h15 M60 40h15 M15 15l11 11 M54 54l11 11 M65 15 54 26 M26 54 15 65"/>
+            <path class="story-note-firework-short" d="M40 28v5 M40 47v5 M28 40h5 M47 40h5"/>
+            <circle cx="40" cy="40" r="5"/>
+            <circle class="story-note-firework-dot" cx="11" cy="26" r="2"/>
+            <circle class="story-note-firework-dot" cx="69" cy="56" r="2"/>
+          </svg>
+          <p class="story-note-kicker"><span data-zh>翻阅生活碎片</span><span data-en hidden>NOTES FROM LIFE</span><span data-story-note-index></span></p>
+          <p class="story-note-date" data-story-note-date></p>
+          <p class="story-note-place" data-story-note-place data-story-note-field></p>
+          <h3 class="story-note-title" data-story-note-title data-story-note-field></h3>
+          <p class="story-note-copy" data-story-note-copy data-story-note-field></p>
+          <svg class="story-note-scribble" viewBox="0 0 112 28" aria-hidden="true"><path d="M3 18c16-13 25 4 42-5 13-8 21 7 38-1 8-4 17-3 26 0"/></svg>
+        </aside>
+        <div class="month-story-list" data-month-story-list>
+        </div>
+      </div>
+    </section>
+
+    <section class="life-gallery section-space reveal">
+      <p class="eyebrow"><span data-zh>旅途里的片刻</span><span data-en hidden>MOMENTS ALONG THE WAY</span></p>
+      <div class="gallery-strip gallery-strip-empty"><p class="gallery-note"><span data-zh>北海的海风、重庆的舞台灯光、北京的古建、青岛的帆船、三亚的朋友与椰林、万宁的日落、陵水的秋千、珠海的灯塔、广州的夜色、自贡的灯火、内江江边的日常，还有芒市的白塔与大理的湖面。<br>每一段旅程，都有自己的颜色。</span><span data-en hidden>Beihai sea air, Chongqing stage lights, Beijing’s old roofs, Qingdao sailboats, friends and palms in Sanya, Wanning’s sunset, a swing in Lingshui, Zhuhai’s lighthouse, Guangzhou after dark, Zigong lanterns, ordinary moments by the river in Neijiang, pagodas in Mangshi, and the lake in Dali.<br>Every trip has its own colors.</span></p></div>
+    </section>
+  </main>
+
+  <dialog class="photo-lightbox" data-photo-lightbox aria-label="照片查看器">
+    <button class="photo-lightbox-close" type="button" data-photo-lightbox-close aria-label="关闭照片">×</button>
+    <figure><img data-photo-lightbox-image alt=""><figcaption data-photo-lightbox-caption></figcaption><p data-photo-lightbox-note></p><div class="photo-lightbox-nav"><button type="button" data-photo-lightbox-prev data-aria-zh="上一张照片" data-aria-en="Previous photo" aria-label="上一张照片">←</button><span data-photo-lightbox-count hidden></span><button type="button" data-photo-lightbox-next data-aria-zh="下一张照片" data-aria-en="Next photo" aria-label="下一张照片">→</button></div><a class="photo-lightbox-location" data-photo-lightbox-location hidden><span data-zh>在旅行地图中查看</span><span data-en hidden>Find this place on the map</span> ↗</a></figure>
+  </dialog>
+  <footer class="site-footer page-shell"><a class="wordmark" href="index.html">GX<span>·</span></a><p>© 2026 Ganping Xue</p><a href="mailto:ganpingxue37@gmail.com">ganpingxue37@gmail.com</a></footer>
+</body>
+</html>
